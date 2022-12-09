@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             agent {
-                docker { image 'node:16.13.1-alpine' }   
+                docker { image 'node:latest' }   
             }
             steps {
                 sh 'npm ci'
