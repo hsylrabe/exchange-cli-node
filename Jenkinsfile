@@ -1,43 +1,35 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:latest' }   
+    }
     stages {
         stage('Install Dependencies') {
-            agent {
-                docker { image 'node:latest' }   
-            }
             steps {
+                sh 'sudo chown -R 973:973 "/.npm"'
                 sh 'npm ci'
               } 
        }
         stage('Unit Test') {
-            agent {
-                docker { image 'node:latest' }   
-            }
             steps {
+                sh 'sudo chown -R 973:973 "/.npm"'
                 sh 'npm test'
             }
       } 
         stage ('Build') {
-            agent {
-                docker { image 'node:latest' }   
-            }
             steps {
+                sh 'sudo chown -R 973:973 "/.npm"'
             sh "npm run build"
             }
         }
         stage ('Unit Tests') {
-            agent {
-                docker { image 'node:latest' }   
-            }
             steps {
+                sh 'sudo chown -R 973:973 "/.npm"'
              sh "npm run test:unit"   
             }
         }
         stage ('Functional Test') {
-            agent {
-                docker { image 'node:latest' }   
-            }
             steps {
+                sh 'sudo chown -R 973:973 "/.npm"'
              sh "npm run test:functional"   
             }
         }
