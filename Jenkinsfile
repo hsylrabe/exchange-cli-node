@@ -21,5 +21,10 @@ pipeline {
              sh "npm run test:unit"   
             }
         }
+        stage ('Functional Test') {
+            steps {
+             sh "npm run test:functional"   
+            }
+        }
     } // stages
 } // pipeline
